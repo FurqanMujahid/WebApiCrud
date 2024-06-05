@@ -1,0 +1,20 @@
+﻿
+@using System.Linq
+@using System.Collections.Generic
+@using System.Web.Mvc
+
+@{
+    ViewBag.Title = "About";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>I am Muhammad Furqan , a student of BS Software Engineer</p>
+@model WebApiCrud.Models.Root
+@*@{
+    List<SelectListItem> documentOptions = Model.libraryDocumentList.Select(doc => new SelectListItem
+    { Text = doc.name, Value = doc.id }).ToList();
+}*@
+
+
+@Html.DropDownListFor(model => model.libraryDocumentList.FirstOrDefault().id, new SelectList(Model.libraryDocumentList, "id", "name"), "Select a Document", new { @class = "form-control" })

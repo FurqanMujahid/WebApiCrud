@@ -1,0 +1,41 @@
+﻿@using System.Linq
+@using System.Collections.Generic
+@using System.Web.Mvc
+
+@{
+    ViewBag.Title = "About";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>I am Muhammad Furqan , a student of BS Software Engineer</p>
+@model WebApiCrud.Models.Root
+@*@{
+        List<SelectListItem> documentOptions = Model.libraryDocumentList.Select(doc => new SelectListItem
+        { Text = doc.name, Value = doc.id }).ToList();
+    }*@
+
+
+@Html.DropDownListFor(model => model.libraryDocumentList, new SelectList(Model.libraryDocumentList, "id", "name"),"Select  Document")
+<input type="submit" value="Submit" id="Send" />
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#Send").click(function () {
+            $.ajax({
+
+                url: '/Home/About',
+                type: "POST",
+                contentType: 'application/json; ; charset=utf-8',
+                dataType: 'json',
+                data: JSON.stringify({libraryDocumentId}),
+                success: function (data) {
+                    alert(data.success);
+                },
+                error: function () {
+                    alert("Error while inserting data");
+                }
+            });
+
+        });
+    });
+</script>
